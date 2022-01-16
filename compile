@@ -1,0 +1,3 @@
+gcc -ansi -I./ -c utilities.c -o utilities.o
+gcc -ansi -I./ -c splitting.c -o splitting.o
+gcc utilities.o splitting.o -o main -lm

@@ -82,8 +82,8 @@ int main(){
 	size_t len;
 	size_t read;
 	clock_t start, diff;
-	char *fname = "p_11.csv";
-	int B;
+	char *fname = "rho.csv";
+	/*int B;*/
 
 	/* Start where you left off */
 
@@ -105,18 +105,19 @@ int main(){
 				break;
 		}	
 	}
-
 	/* Get next composite and test */
 	while (((read = getdelim(&ch, &len, 44, fp)) != -1) )
 	{
 
 		n = atoi(ch); 
 		printf("\b\b\b\b\b\b\b\b\b%d", n);
+		/* ------- For pollardP_1S1 only -------
 		B = (int) exp(log(sqrt(n)/2)/1.1);
 		if(B<7)
 			B=7;
+		*/
 		start = clock();
-		d = pollardP_1S1(n, B);
+		d = pollardRho(n);
 		diff = clock() - start;
 		fpw = fopen(fname, "a");
 		fprintf(fpw, "%d,%d,%Lf\n", n, d, (long double)((double)diff/((double)CLOCKS_PER_SEC)));
